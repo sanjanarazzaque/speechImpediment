@@ -1,112 +1,220 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 
-const windowWidth = Dimensions.get('window').width;
 
-const Login = () => {
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
+function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
-    const handleLogin = () => {
-        // Implement your login logic here
-    };
+    const handleForgotPasswordPress = () => {
+        // for now
+        console.log('Forgot Password Pressed');
+      };
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Stuttr</Text>
-            
+  return (
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.loginTitle}>Login</Text>
+        <Text style={styles.welcomeBack}>Welcome back</Text>
+      </View>
 
-            <TextInput 
-                style={styles.input}
-                placeholder="Email"
-                placeholderTextColor="#aaa"
-                value={email}
-                onChangeText={setEmail}
-            />
+      {/* Input fields */}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.inputField}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <TextInput
+          style={styles.inputField}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+      </View>
 
-            <TextInput 
-                style={styles.input}
-                placeholder="Password"
-                placeholderTextColor="#aaa"
-                secureTextEntry={true}
-                value={password}
-                onChangeText={setPassword}
-            />
+      {/* Forgot password text */}
+      <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.forgotPasswordContainer}>
+  <Text style={styles.forgotPassword}>Forgot your password?</Text>
+</TouchableOpacity>
 
-            <View style={styles.optionsContainer}>
-                <TouchableOpacity onPress={() => setKeepLoggedIn(!keepLoggedIn)}>
-                    <Text style={keepLoggedIn ? styles.optionSelected : styles.option}>Keep me logged in.</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text style={styles.forgotPassword}>Forgot password? Recover here</Text>
-                </TouchableOpacity>
-            </View>
+      {/* Sign in and create new account buttons */}
+      <View style={styles.signInContainer}>
+        <TouchableOpacity style={styles.signInButton}>
+          <Text style={styles.signInText}>Sign in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.createAccountButton}>
+          <Text style={styles.createAccountText}>Create new account</Text>
+        </TouchableOpacity>
+      </View>
 
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-                <Text style={styles.buttonText}>LOGIN</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-                <Text style={styles.signupText}>Don't have an account? Signup here</Text>
-            </TouchableOpacity>
-        </View>
-    );
+      <Text style={styles.continueText}>Or continue with</Text>
+      <View style={styles.socialButtonContainer}>
+        <TouchableOpacity style={styles.socialButton}>
+          <Image source={require('../assets/imagesAndIcons/google.png')} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Image source={require('../assets/imagesAndIcons/facebook.png')} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Image source={require('../assets/imagesAndIcons/apple.png')} style={styles.socialIcon} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: 20,
+  },
+  titleContainer: {
+    marginTop: screenHeight * 0.1,
+    alignItems: 'center',
+  },
+  loginTitle: {
+    fontSize: 30,
+    fontFamily: 'Poppins-Bold',
+    fontWeight: '800',
+  },
+  welcomeBack: {
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: '600',
+    marginTop: 20,
+    marginBottom: screenHeight * 0.02
+  },
+  socialButtonContainer: {
+    position: 'absolute',
+    bottom: screenHeight * 0.15,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  socialButton: {
+    // Similar to the HomeScreen
+  },
+  signInContainer: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20, // Adjust as needed based on your layout
+  },
+  signInButton: {
+    backgroundColor: '#B2C3FF',
+    borderRadius: 10,
+    width: '90%',
+    alignItems: 'center',
+    padding: 15,
+  },
+  signInText: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Poppins',
+    fontWeight: '600',
+  },
+  createAccountButton: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    width: '90%',
+    alignItems: 'center',
+    padding: 10,
+    marginTop: 15,
+  },
+  createAccountText: {
+    color: '#494949',
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: '600',
+    marginBottom: screenHeight * 0.1
+  },
+  inputContainer: {
+    width: '90%',
+    marginTop: screenHeight * 0.07, 
+  },
+  inputField: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    width: '90%',
+    padding: 20,
+    marginBottom: 30,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  // Remove the absolute positioning from forgotPassword style
+  forgotPassword: {
+    color: '#85A0FF',
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
+    alignSelf: 'flex-end', // Align text to the right
+    marginTop: 10, // Adjust the margin as needed
+  },
+
+  socialButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '50%%',
+    marginTop: 20,
+  },  
+  socialButton: {
+    width: screenWidth * 0.15,
+    height: screenWidth * 0.1, 
+    borderRadius: 10,
+    backgroundColor: 'white',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
     },
-    title: {
-        color: 'white',
-        fontSize: 40,
-        fontWeight: 'bold',
-    },
-    input: {
-        width: windowWidth* 0.80,  // change this from 100% to 80%
-        padding: 15,
-        marginBottom: 20,
-        backgroundColor: '#333',
-        color: 'white',
-        borderRadius: 5,
-    },
-    optionsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        marginBottom: 20,
-    },
-    option: {
-        color: '#aaa',
-    },
-    optionSelected: {
-        color: 'green',
-    },
-    forgotPassword: {
-        color: 'green',
-    },
-    loginButton: {
-        width: '100%',
-        padding: 15,
-        backgroundColor: 'green',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    signupText: {
-        color: 'white',
-        marginTop: 20,
-    }
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
+  
+  socialIcon: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },  
+  inputField: {
+    backgroundColor: '#FFF', // A light color for the input field
+    borderRadius: 10,
+    width: '100%', // Use full width of the input container
+    padding: 15,
+    fontSize: 16, // Reasonable font size for input text
+    fontFamily: 'Poppins-Regular', // Use the regular font weight
+    color: '#000', // Text color
+    borderWidth: 1, // Optional: if you want a border
+    borderColor: '#ddd', // A light border color
+    marginBottom: 15, // Space between the input fields
+  },
+  forgotPassword: {
+    color: '#85A0FF',
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular', // Use the regular font weight
+    marginBottom: 20, // Add some bottom margin
+    alignSelf: 'flex-end', // Align to the right side
+  },
 });
 
-export default Login;
+export default LoginScreen;
