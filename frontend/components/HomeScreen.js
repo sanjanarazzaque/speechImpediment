@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   accountText: {
     color: 'black',
     fontSize: 15,
-    fontFamily: 'Kanit', 
+    fontFamily: 'Kanit-Regular', 
     textDecorationLine: 'underline',
     marginTop: 10,
     marginBottom: screenHeight * 0.05
