@@ -5,7 +5,7 @@ import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Dimensions 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-function LoginScreen() {
+function LoginScreen({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -53,7 +53,7 @@ function LoginScreen() {
         <TouchableOpacity style={styles.signInButton}>
           <Text style={styles.signInText}>Sign in</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.createAccountButton}>
+        <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('CreateAccount')}>
           <Text style={styles.createAccountText}>Create new account</Text>
         </TouchableOpacity>
       </View>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   welcomeBack: {
     fontSize: 20,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-SemiBold',
     fontWeight: '600',
     marginTop: 20,
     marginBottom: screenHeight * 0.02
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   signInText: {
     color: 'white',
     fontSize: 20,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Bold',
     fontWeight: '600',
   },
   createAccountButton: {
@@ -137,9 +137,10 @@ const styles = StyleSheet.create({
   createAccountText: {
     color: '#494949',
     fontSize: 14,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontWeight: '600',
-    marginBottom: screenHeight * 0.1
+    marginBottom: screenHeight * 0.1,
+    textDecorationLine: 'underline',
   },
   inputContainer: {
     width: '90%',
@@ -161,11 +162,15 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: '#85A0FF',
     fontSize: 14,
-    fontFamily: 'Poppins-Regular',
-    alignSelf: 'flex-end', // Align text to the right
+    fontFamily: 'Poppins-SemiBold',
     marginTop: 10, // Adjust the margin as needed
+    marginBottom: screenHeight * 0.05,
+    marginRight: screenWidth * 0.05,
   },
-
+  forgotPasswordContainer: {
+    width: '100%', // Take up the full width to allow alignment
+    alignItems: 'flex-end', // Aligns the content (the text) to the right
+  },
   socialButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -207,13 +212,6 @@ const styles = StyleSheet.create({
     borderWidth: 1, // Optional: if you want a border
     borderColor: '#ddd', // A light border color
     marginBottom: 15, // Space between the input fields
-  },
-  forgotPassword: {
-    color: '#85A0FF',
-    fontSize: 14,
-    fontFamily: 'Poppins-Regular', // Use the regular font weight
-    marginBottom: 20, // Add some bottom margin
-    alignSelf: 'flex-end', // Align to the right side
   },
 });
 
