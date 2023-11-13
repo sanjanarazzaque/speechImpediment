@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import HorizontalCarousel from './HorizontalCarousel';
 
 const Community1 = () => {
     const [selectedTab, setSelectedTab] = useState('Discover');
@@ -10,8 +11,8 @@ const Community1 = () => {
             return (
                 <View style={styles.contentContainer}>
                     {/* Content for Discover tab */}
-                    <Text>Discover Tab Content</Text>
-                   
+                    <Text style={styles.black}>General Discussion</Text>
+                    <HorizontalCarousel />
                 </View>
             );
         } else if (selectedTab === 'YourGroups') {
@@ -34,6 +35,7 @@ const Community1 = () => {
                     <Text style={styles.tabText}>Your Groups</Text>
                 </TouchableOpacity>
             </View>
+
             {renderContent()}
         </SafeAreaView>
     );

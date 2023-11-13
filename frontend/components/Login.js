@@ -53,7 +53,7 @@ function LoginScreen({navigation}) {
         <TouchableOpacity style={styles.signInButton}>
           <Text style={styles.signInText}>Sign in</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('CreateAccount')}>
+        <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('Community2')}>
           <Text style={styles.createAccountText}>Create new account</Text>
         </TouchableOpacity>
       </View>
